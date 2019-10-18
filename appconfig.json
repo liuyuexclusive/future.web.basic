@@ -1,0 +1,9 @@
+{
+    "ConsulAddress": "192.168.0.101:8500",
+    "NatsAddress": "192.168.0.101:4222",
+    "ElasticURL": "http://192.168.0.101:9200",
+    "HostIP": "192.168.0.101",
+    "APIPort": "9000",
+    "ConnStr": "root:123456@tcp(192.168.0.101:3306)/future?charset=utf8&parseTime=True&loc=Local",
+    "RedisAddress": "192.168.0.101:6379"
+}

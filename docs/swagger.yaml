@@ -1,0 +1,105 @@
+definitions:
+  handler.LoginInput:
+    properties:
+      password:
+        description: 密码
+        type: string
+      username:
+        description: 用户名
+        type: string
+    type: object
+  handler.LoginOutput:
+    properties:
+      token:
+        description: 令牌
+        type: string
+    type: object
+  handler.RoleAddOrUpdateInput:
+    properties:
+      id:
+        description: 角色ID
+        type: integer
+      name:
+        description: 角色名称
+        type: string
+    type: object
+info:
+  contact: {}
+  description: XXXXXXXXXXX
+  license: {}
+  title: Future对外开放API
+  version: "1.0"
+paths:
+  /basic/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: input
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/handler.LoginInput'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: output
+          schema:
+            $ref: '#/definitions/handler.LoginOutput'
+            type: object
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      tags:
+      - 获取token
+  /basic/role/add:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 授权码
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 输入参数
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/handler.RoleAddOrUpdateInput'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      tags:
+      - 新增or更新角色
+swagger: "2.0"
