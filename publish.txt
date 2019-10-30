@@ -4,5 +4,6 @@ docker push registry.cn-shenzhen.aliyuncs.com/liuyuexclusive/{{.ProjectName}}.{{
 ssh root@49.232.166.55 "
 docker stop future.web.basic_1
 docker rm future.web.basic_1
+docker pull registry.cn-shenzhen.aliyuncs.com/liuyuexclusive/{{.ProjectName}}.{{.Type}}.{{.AppName}}:{{.Version}}
 docker run -d --network=future_default --name=future.web.basic_1 registry.cn-shenzhen.aliyuncs.com/liuyuexclusive/{{.ProjectName}}.{{.Type}}.{{.AppName}}:{{.Version}}
 "
