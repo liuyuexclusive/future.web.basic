@@ -64,6 +64,32 @@ paths:
             type: string
       tags:
       - 获取token
+  /basic/logout:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: output
+          schema:
+            $ref: '#/definitions/handler.LoginOutput'
+            type: object
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      tags:
+      - 登出
   /basic/role/add:
     post:
       consumes:

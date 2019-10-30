@@ -64,6 +64,17 @@ func Login(c *gin.Context) {
 	}
 }
 
+// Logout godoc
+// @Summary
+// @Description
+// @Tags 登出
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} handler.LoginOutput "output"
+// @Failure 400 {string} string "ok"
+// @Failure 404 {string} string "ok"
+// @Failure 500 {string} string "ok"
+// @Router /basic/logout [post]
 func Logout(c *gin.Context) {
 	webutil.OK(c, "")
 }

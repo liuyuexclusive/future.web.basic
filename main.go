@@ -41,7 +41,7 @@ func (s *start) Start(engine *gin.Engine) {
 
 	// basic.GET("/test", handler.Test)
 
-	// engine.LoadHTMLGlob("html/*")
+	// engine.LoadHTMLGlob("dist/*")
 	// basic.GET("/test2", func(c *gin.Context) {
 	// 	c.HTML(http.StatusOK, "index.html", nil)
 	// })

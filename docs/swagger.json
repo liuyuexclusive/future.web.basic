@@ -60,6 +60,46 @@
                 }
             }
         },
+        "/basic/logout": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "登出"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "output",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/handler.LoginOutput"
+                        }
+                    },
+                    "400": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/basic/role/add": {
             "post": {
                 "consumes": [
