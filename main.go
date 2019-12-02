@@ -53,7 +53,7 @@ func (s *start) Start(engine *gin.Engine) {
 // @host
 // @BasePath
 func main() {
-	if err := webutil.Startup("go.micro.web.basic", new(start), func(options *webutil.Options) { options.IsLogToES = true }); err != nil {
+	if err := webutil.Startup("go.micro.web.basic", new(start), func(options *webutil.Options) { options.IsLogToES = false }); err != nil {
 		logrus.Fatal(err)
 	}
 }
