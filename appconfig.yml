@@ -1,7 +1,7 @@
-ETCDAddress: 172.21.0.2:2379
-NatsAddress: 172.21.0.2:4222
-ElasticURL: http://172.21.0.2:9200
-HostIP: 172.21.0.2
+ETCDAddress: 192.168.0.101:2379
+NatsAddress: 192.168.0.101:4222
+ElasticURL: http://192.168.0.101:9200
+HostIP: 192.168.0.101
 APIPort: 9000
-ConnStr: root:123456@tcp(172.21.0.2:3306)/future?charset=utf8&parseTime=True&loc=Local
-RedisAddress: 172.21.0.2:6379
+RedisAddress: 192.168.0.101:6379
+JaegerAddress: 192.168.0.101:6831

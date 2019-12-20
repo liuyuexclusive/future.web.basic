@@ -17,7 +17,7 @@ func (s *start) Start(engine *gin.Engine) {
 	authorized := basic.Group("/")
 	authorized.Use(handler.Validate())
 	{
-		authorized.POST("/roleAddOrUpdate", handler.RoleAddOrUpdate)
+		authorized.POST("/role/add", handler.RoleAddOrUpdate)
 
 		authorized.GET("/get_info", handler.CurrentUser)
 
@@ -53,7 +53,10 @@ func (s *start) Start(engine *gin.Engine) {
 // @host
 // @BasePath
 func main() {
-	if err := webutil.Startup("go.micro.web.basic", new(start), func(options *webutil.Options) { options.IsLogToES = false }); err != nil {
+	if err := webutil.Startup("go.micro.web.basic", new(start), func(options *webutil.Options) {
+		options.IsLogToES = false
+		options.IsTrace = true
+	}); err != nil {
 		logrus.Fatal(err)
 	}
 }

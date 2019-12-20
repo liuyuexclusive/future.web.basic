@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"context"
 	"fmt"
 	"strconv"
 
@@ -31,7 +30,7 @@ func Validate() gin.HandlerFunc {
 		if token == "" {
 			token = c.Query("token")
 		}
-		res, err := user.NewUserService("go.micro.srv.basic", client.DefaultClient).Validate(context.TODO(), &user.ValidateRequest{Token: token})
+		res, err := user.NewUserService("go.micro.srv.basic", client.DefaultClient).Validate(webutil.ContextWithSpan(c), &user.ValidateRequest{Token: token})
 		if err != nil {
 			c.JSON(401, err.Error())
 			c.Abort()
@@ -55,7 +54,7 @@ func Validate() gin.HandlerFunc {
 func Login(c *gin.Context) {
 	var model LoginInput
 	if ok := webutil.ReadBody(c, &model); ok {
-		res, err := user.NewUserService("go.micro.srv.basic", client.DefaultClient).Auth(context.TODO(), &user.AuthRequest{Id: model.UserName, Key: model.Password})
+		res, err := user.NewUserService("go.micro.srv.basic", client.DefaultClient).Auth(webutil.ContextWithSpan(c), &user.AuthRequest{Id: model.UserName, Key: model.Password})
 		if err != nil {
 			webutil.Bad(c, err)
 		} else {
@@ -101,7 +100,7 @@ func RoleAddOrUpdate(c *gin.Context) {
 
 	var model RoleAddOrUpdateInput
 	if ok := webutil.ReadBody(c, &model); ok {
-		_, err := role.NewRoleService("go.micro.srv.basic", client.DefaultClient).AddOrUpdate(context.TODO(), &role.RoleAddOrUpdateRequest{Id: model.ID, Name: model.Name})
+		_, err := role.NewRoleService("go.micro.srv.basic", client.DefaultClient).AddOrUpdate(webutil.ContextWithSpan(c), &role.RoleAddOrUpdateRequest{Id: model.ID, Name: model.Name})
 		if err != nil {
 			webutil.Bad(c, err)
 		} else {
@@ -117,7 +116,7 @@ type CurrentUserOutput struct {
 }
 
 func CurrentUser(c *gin.Context) {
-	res, err := user.NewUserService("go.micro.srv.basic", client.DefaultClient).Get(context.TODO(), &user.GetRequest{Name: c.GetString("username")})
+	res, err := user.NewUserService("go.micro.srv.basic", client.DefaultClient).Get(webutil.ContextWithSpan(c), &user.GetRequest{Name: c.GetString("username")})
 	if err != nil {
 		c.JSON(400, err.Error())
 		return
@@ -126,7 +125,7 @@ func CurrentUser(c *gin.Context) {
 }
 
 // func Test(c *gin.Context) {
-// 	micro.NewPublisher("go.micro.srv.basic1", client.DefaultClient).Publish(context.TODO(), &basic.TestMessage{Name: "jiaojiao"})
+// 	micro.NewPublisher("go.micro.srv.basic1", client.DefaultClient).Publish(webutil.ContextWithSpan(c), &basic.TestMessage{Name: "jiaojiao"})
 // }
 
 type Message struct {
@@ -142,7 +141,7 @@ type MessageOutput struct {
 }
 
 func MessageInit(c *gin.Context) {
-	res, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).Init(context.TODO(), &message.InitRequest{To: c.GetString("username")})
+	res, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).Init(webutil.ContextWithSpan(c), &message.InitRequest{To: c.GetString("username")})
 	if err == nil {
 		webutil.Bad(c, err)
 	}
@@ -164,7 +163,7 @@ func MessageContent(c *gin.Context) {
 	if err != nil {
 		webutil.Bad(c, err)
 	}
-	res, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).Get(context.TODO(), &message.GetRequest{Id: int64(id)})
+	res, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).Get(webutil.ContextWithSpan(c), &message.GetRequest{Id: int64(id)})
 	if err != nil {
 		webutil.Bad(c, err)
 	}
@@ -178,7 +177,7 @@ type HasReadInput struct {
 func HasRead(c *gin.Context) {
 	var input HasReadInput
 	if webutil.ReadBody(c, &input) {
-		_, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).ChangeStatus(context.TODO(), &message.ChangeStatusRequest{Id: input.MsgID, Status: message.ChangeStatusRequest_Readed})
+		_, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).ChangeStatus(webutil.ContextWithSpan(c), &message.ChangeStatusRequest{Id: input.MsgID, Status: message.ChangeStatusRequest_Readed})
 		if err != nil {
 			webutil.Bad(c, err)
 		}
@@ -189,7 +188,7 @@ func HasRead(c *gin.Context) {
 func RemoveReaded(c *gin.Context) {
 	var input HasReadInput
 	if webutil.ReadBody(c, &input) {
-		_, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).ChangeStatus(context.TODO(), &message.ChangeStatusRequest{Id: input.MsgID, Status: message.ChangeStatusRequest_Trash})
+		_, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).ChangeStatus(webutil.ContextWithSpan(c), &message.ChangeStatusRequest{Id: input.MsgID, Status: message.ChangeStatusRequest_Trash})
 		if err != nil {
 			webutil.Bad(c, err)
 		}
@@ -200,7 +199,7 @@ func RemoveReaded(c *gin.Context) {
 func Restore(c *gin.Context) {
 	var input HasReadInput
 	if webutil.ReadBody(c, &input) {
-		_, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).ChangeStatus(context.TODO(), &message.ChangeStatusRequest{Id: input.MsgID, Status: message.ChangeStatusRequest_Readed})
+		_, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).ChangeStatus(webutil.ContextWithSpan(c), &message.ChangeStatusRequest{Id: input.MsgID, Status: message.ChangeStatusRequest_Readed})
 		if err != nil {
 			webutil.Bad(c, err)
 		}
@@ -209,7 +208,7 @@ func Restore(c *gin.Context) {
 }
 
 func MessageCount(c *gin.Context) {
-	res, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).Init(context.TODO(), &message.InitRequest{To: c.GetString("username")})
+	res, err := message.NewMessageService("go.micro.srv.basic", client.DefaultClient).Init(webutil.ContextWithSpan(c), &message.InitRequest{To: c.GetString("username")})
 	if err != nil {
 		webutil.Bad(c, err)
 	} else {
