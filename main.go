@@ -55,7 +55,7 @@ func (s *start) Start(engine *gin.Engine) {
 func main() {
 	if err := webutil.Startup("go.micro.web.basic", new(start), func(options *webutil.Options) {
 		options.IsLogToES = false
-		options.IsTrace = true
+		options.IsTrace = false
 	}); err != nil {
 		logrus.Fatal(err)
 	}

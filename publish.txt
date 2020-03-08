@@ -1,9 +1,10 @@
+
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build 
 docker build . -t registry.cn-shenzhen.aliyuncs.com/liuyuexclusive/{{.ProjectName}}.{{.Type}}.{{.AppName}}:{{.Version}}
 docker push registry.cn-shenzhen.aliyuncs.com/liuyuexclusive/{{.ProjectName}}.{{.Type}}.{{.AppName}}:{{.Version}}
-ssh root@49.232.166.55 "
-docker stop future.web.basic_1
-docker rm future.web.basic_1
+ssh root@{{.Host}} "
 docker pull registry.cn-shenzhen.aliyuncs.com/liuyuexclusive/{{.ProjectName}}.{{.Type}}.{{.AppName}}:{{.Version}}
-docker run -d --network=future_default --name=future.web.basic_1 registry.cn-shenzhen.aliyuncs.com/liuyuexclusive/{{.ProjectName}}.{{.Type}}.{{.AppName}}:{{.Version}}
+docker stop future.{{.Type}}.basic_1
+docker rm future.{{.Type}}.basic_1
+docker run -d --network=future_default --name=future.{{.Type}}.basic_1 registry.cn-shenzhen.aliyuncs.com/liuyuexclusive/{{.ProjectName}}.{{.Type}}.{{.AppName}}:{{.Version}}
 "
