@@ -39,6 +39,10 @@ func (s *start) Start(engine *gin.Engine) {
 
 	basic.POST("/logout", handler.Logout)
 
+	// basic.GET("/metrics", func(c *gin.Context) {
+	// 	promhttp.Handler().ServeHTTP(c.Writer, c.Request)
+	// })
+
 	// basic.GET("/test", handler.Test)
 
 	// engine.LoadHTMLGlob("dist/*")
