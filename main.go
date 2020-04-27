@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 
@@ -43,7 +45,9 @@ func (s *start) Start(engine *gin.Engine) {
 	// 	promhttp.Handler().ServeHTTP(c.Writer, c.Request)
 	// })
 
-	// basic.GET("/test", handler.Test)
+	basic.GET("/test", func(c *gin.Context) {
+		c.String(http.StatusOK, "test ok")
+	})
 
 	// engine.LoadHTMLGlob("dist/*")
 	// basic.GET("/test2", func(c *gin.Context) {
@@ -57,7 +61,7 @@ func (s *start) Start(engine *gin.Engine) {
 // @host
 // @BasePath
 func main() {
-	if err := webutil.Startup("go.micro.web.basic", new(start), func(options *webutil.Options) {
+	if err := webutil.Startup("go.micro.api.basic", new(start), func(options *webutil.Options) {
 		options.IsLogToES = false
 		options.IsTrace = false
 	}); err != nil {

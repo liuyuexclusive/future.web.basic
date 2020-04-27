@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/micro/go-micro/client"
+	"github.com/micro/go-micro/v2/client"
 
 	"github.com/gin-gonic/gin"
 

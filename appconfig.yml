@@ -1,7 +1,7 @@
-ETCDAddress: 192.168.1.104:2379
-NatsAddress: 192.168.1.104:4222
-ElasticURL: http://192.168.1.104:9200
-HostIP: 192.168.1.104
+ETCDAddress: 192.168.0.102:2379
+NatsAddress: 192.168.0.102:4222
+ElasticURL: http://192.168.0.102:9200
+HostIP: 192.168.0.102
 APIPort: 9000
-RedisAddress: 192.168.1.104:6379
-JaegerAddress: 192.168.1.104:6831
+RedisAddress: 192.168.0.102:6379
+JaegerAddress: 192.168.0.102:6831
