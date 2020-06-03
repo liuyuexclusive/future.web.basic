@@ -64,6 +64,8 @@ func main() {
 	if err := webutil.Startup("go.micro.api.basic", new(start), func(options *webutil.Options) {
 		options.IsLogToES = false
 		options.IsTrace = false
+		options.IsMonitor = false
+		options.IsRateLimite = false
 	}); err != nil {
 		logrus.Fatal(err)
 	}

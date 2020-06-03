@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"net/http"
 	"strconv"
 
 	"github.com/micro/go-micro/v2/client"
@@ -118,7 +119,7 @@ type CurrentUserOutput struct {
 func CurrentUser(c *gin.Context) {
 	res, err := user.NewUserService("go.micro.srv.basic", client.DefaultClient).Get(webutil.ContextWithSpan(c), &user.GetRequest{Name: c.GetString("username")})
 	if err != nil {
-		c.JSON(400, err.Error())
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 	webutil.OK(c, CurrentUserOutput{Avatar: res.Avatar, Name: res.Name, Access: []string{"super_admin"}})
