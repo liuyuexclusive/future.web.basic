@@ -374,6 +374,8 @@ github.com/liuyuexclusive/utils v1.3.3 h1:LPdrkm9jAcmTjJ2NL+TU6Os3YI4KVLvOK4iLju
 github.com/liuyuexclusive/utils v1.3.3/go.mod h1:JIWABzbZIrgcf3GvpkRCLb75zxJirhn3LSmuUaBgWHc=
 github.com/liuyuexclusive/utils v1.4.0 h1:A7SxErIW77cx1nFR2tG53QL27HyNZjvENgVqNAgLLAY=
 github.com/liuyuexclusive/utils v1.4.0/go.mod h1:geih5VIkk+iP/vE3ZIvDgGAeHgCQrW+M4pgnW/JQFLk=
+github.com/liuyuexclusive/utils v1.5.0 h1:1od4efGD/KDcy56iYT8ylfbrDiInEisy7mPDmEk7UOE=
+github.com/liuyuexclusive/utils v1.5.0/go.mod h1:geih5VIkk+iP/vE3ZIvDgGAeHgCQrW+M4pgnW/JQFLk=
 github.com/lucas-clemente/quic-go v0.14.1/go.mod h1:Vn3/Fb0/77b02SGhQk36KzOUmXgVpFfizUfW5WMaqyU=
 github.com/mailru/easyjson v0.0.0-20180823135443-60711f1a8329/go.mod h1:C1wdFJiN94OJF2b5HbByQZoLdCWB1Yqtg26g4irojpc=
 github.com/mailru/easyjson v0.0.0-20190312143242-1de009706dbe/go.mod h1:C1wdFJiN94OJF2b5HbByQZoLdCWB1Yqtg26g4irojpc=

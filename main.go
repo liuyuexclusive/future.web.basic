@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 
-	"github.com/liuyuexclusive/utils/webutil"
+	"github.com/liuyuexclusive/utils/web"
 
 	_ "github.com/liuyuexclusive/future.web.basic/docs"
 	"github.com/liuyuexclusive/future.web.basic/handler"
@@ -61,7 +61,7 @@ func (s *start) Start(engine *gin.Engine) {
 // @host
 // @BasePath
 func main() {
-	if err := webutil.Startup("go.micro.api.basic", new(start), func(options *webutil.Options) {
+	if err := web.Startup("go.micro.api.basic", new(start), func(options *web.Options) {
 		options.IsLogToES = false
 		options.IsTrace = false
 		options.IsMonitor = false
