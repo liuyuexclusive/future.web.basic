@@ -9,5 +9,5 @@ require (
 	github.com/liuyuexclusive/utils v1.5.1
 	github.com/micro/go-micro/v2 v2.8.0
 	github.com/sirupsen/logrus v1.6.0
-	github.com/swaggo/swag v1.6.6
+	github.com/swaggo/swag v1.6.7
 )
